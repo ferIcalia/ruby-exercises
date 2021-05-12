@@ -88,15 +88,15 @@ def write_to(file_name, &block)
   file.close
 end
 
-each_person_customs = []
 PEOPLE.each do |person|
+  customes = CUSTOMES.sample(2)
+  puts "Hi #{person[:name]},\n\
+  Happy Halloween, hope you enjoy #{customes[0]} and #{customes[1]} as your customes for this year"
   write_to "sample.txt" do |file|
     file.write "Hi #{person[:name]}\n"
-    file.write "Happy Halloween, hope you enjoy #{CUSTOMES[rand(CUSTOMES.length)]} and #{CUSTOMES[rand(CUSTOMES.length)]} as your customes for this year\n"
+    file.write "Happy Halloween, hope you enjoy #{customes[0]} and #{customes[1]} as your customes for this year\n"
   end
 end
-
-
 
 # Here is an example on how to run this:
 # write_to "ross_geller.txt" do |file|
