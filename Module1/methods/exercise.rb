@@ -23,11 +23,26 @@
 # Create a method to transform US Dollars to MXN Pesos. 
 #  Only receives one argument
 
+def currency_exchange(dollar_amount)
+  dollar_price = 21
+  pesos = dollar_price * dollar_amount
+  "$#{dollar_amount} dolares equivalen a: $#{pesos} pesos"
+end
+
+puts currency_exchange 50
 # Exercise 2:
 # Create a repeater method, that will receive two arguments:
 #   1. the number of repetitions to print to the terminal
 #   2. and the string to repeat
 # HINT: You can use the `times` iterator viewed on flow-control lesson
+
+def repeater(repetitions, text)
+  display_text = ""
+  repetitions.times { display_text += text }
+  display_text
+end
+
+puts repeater 3, "Aprendiendo en el dojo "
 
 # Exercise 3:
 # Write a script to assign your next halloween custom options.
@@ -66,12 +81,22 @@ CUSTOMES = ["Freddy Krueger",
             "Jedi Master"]
 
 def write_to(file_name, &block)
-  file = File.new(filename, "w")
+  file = File.new(file_name, "a")
   file.write "---\n"
   yield(file) if block_given?
   file.write "---"
   file.close
 end
+
+each_person_customs = []
+PEOPLE.each do |person|
+  write_to "sample.txt" do |file|
+    file.write "Hi #{person[:name]}\n"
+    file.write "Happy Halloween, hope you enjoy #{CUSTOMES[rand(CUSTOMES.length)]} and #{CUSTOMES[rand(CUSTOMES.length)]} as your customes for this year\n"
+  end
+end
+
+
 
 # Here is an example on how to run this:
 # write_to "ross_geller.txt" do |file|
@@ -89,24 +114,31 @@ PI = 3.14
 def calculate_circle_area(radius)
   PI * radius**2
 end
+#It will return the area of a circle if you pass a radius value to that function because you don't need to specify return in a ruby method.
 
 def calculate_circle_area(radius)
   area = PI * radius**2
   return area
 end
+# This it's going to return the area also, but the word return is not commonly used in ruby methods.
 
 # yes, this is empty
 def calculate_circle_area(radius)
 end
+#This method is not going to work because is expecting for a raduis value so is not going even to compile.
 
 def calculate_circle_area(radius)
   1 + 1
   "Hi, from the calculate circle area"
   PI * radius**2
 end
+#It's going to return the area of the circle if you call it with a radius value because the sum does not affect the output, it is just going
+#to sum those values and simply does not print them.
 
 def calculate_circle_area(radius)
   return PI * radius**2
   1 + 1
   "Hi, from the calculate circle area"
 end
+#This is also going to print the area but in this case the execution of the code will finish over the return line so 
+#1+1 and the string are not going to be executed.

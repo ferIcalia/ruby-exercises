@@ -41,25 +41,22 @@ puts "\n"
 # 5 - 5 seconds to...
 # 6 - Number of first Avengers
 puts "Exercise 2:"
-dice = [1,2,3,4,5,6]
+dice = [1,2,3,4,5,6].sample
 
-i = 0
-while i <= 5
-  if dice[i] == 1
-    puts "1 - You only live once"
-  elsif dice[i] == 2
-    puts "2 - You have two hands"
-  elsif dice[i] == 3
-    puts "3 - March is the third month of the year"
-  elsif dice[i] == 4
-    puts "4 - Fantastic Four"
-  elsif dice[i] == 5
-    puts "5 - 5 seconds to..."
-  elsif dice[i] == 6
-    puts "6 - Number of first Avengers"
-  end
-  i+=1
+if dice == 1
+  puts "1 - You only live once"
+elsif dice == 2
+  puts "2 - You have two hands"
+elsif dice == 3
+  puts "3 - March is the third month of the year"
+elsif dice == 4
+  puts "4 - Fantastic Four"
+elsif dice == 5
+  puts "5 - 5 seconds to..."
+elsif dice == 6
+  puts "6 - Number of first Avengers"
 end
+
 puts "\n"
 
 # Exercise 3:
@@ -144,9 +141,7 @@ puts "\n"
 puts "Exercise 5:"
 number = 100
 
-number.times do |n|
-  puts n % 2 == 0 ? "#{n} => even" : "#{n} => odd"
-end
+number.times { |n| puts "#{n} => even" if n.even? }
 
 puts "\n"
 # Exercise 6:
