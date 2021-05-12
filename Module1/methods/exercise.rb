@@ -125,7 +125,7 @@ end
 # yes, this is empty
 def calculate_circle_area(radius)
 end
-#This method is not going to work because is expecting for a raduis value so is not going even to compile.
+#This method is going to return a nil.
 
 def calculate_circle_area(radius)
   1 + 1
