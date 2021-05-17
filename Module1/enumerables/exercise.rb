@@ -35,7 +35,8 @@ end
 
 def super_heroes_with_map
   heroes = ["iron man", "hulk", "black widow", "thor", "captain marvel"]
-  capitalized_heroes_map = heroes.map { |heroe| heroe.capitalize }
+  # heroes.map { |heroe| heroe.capitalize }
+  heroes.map(&:capitalize)
 end
 puts super_heroes_with_map.inspect
 
@@ -59,13 +60,10 @@ puts "Exercise 3:"
 
 def divisible_by_5_and_3
   numbers = (1..100).to_a # this will create an array from 1 to 100. Check the Range class from Ruby - https://ruby-doc.org/core-2.5.1/Range.html
+  numbers.select { |number| number % 5 == 0 && number % 3 == 0 }
 end
 
-numbers_divisible_by_five_or_three = divisible_by_5_and_3.select do |number|
-  number % 5 == 0
-  number % 3 == 0
-end
-puts numbers_divisible_by_five_or_three
+puts divisible_by_5_and_3
 puts "\n"
 
 # Exercise 4:
@@ -81,14 +79,10 @@ def all_zeros?(numbers = [])
 end
 
 def all_zeros_with_select?(numbers = [])
-  different_to_zero = numbers.select do |number|
-    number != 0
-  end
-
-  different_to_zero.length == 0
+  numbers.select { |number| number != 0 }.length.zero?
 end
 
-puts all_zeros_with_select? [0,0,0,0,0,0,1]
+puts all_zeros_with_select? [0,0,0,0,0,0,0]
 puts "\n"
 
 # Exercise 5:
@@ -97,9 +91,7 @@ puts "\n"
 puts "Exercise 5:"
 
 def all_empty?(words = [])
-  different_to_empty = words.select { |word| !word.empty? }
-
-  different_to_empty.length == 0
+  words.reject(&:empty?).length.zero?
 end
 
 puts all_empty? ["","",""]
@@ -112,10 +104,7 @@ puts "\n"
 # names array example - ["Iron Man", "Hulk", "Goku", "Anakin Skywalker", "Darth Vader", "Gohan"]
 puts "Exercise 6:"
 def full_names(names = [])
-  full_names = []
-  names.select { |name| full_names << name if name.include? " " }
-
-  full_names
+  names.select { |name| name.include? " " }
 end
 
 puts full_names ["Iron Man", "Hulk", "Goku", "Anakin Skywalker", "Darth Vader", "Gohan"]
@@ -127,9 +116,9 @@ puts "\n"
 puts "Exercise 7:"
 def include_dog?
   animals = ["cat", "elephant", "lion", "dog", "jaguar", "snake"]
-  dog_exists = animals.find { |animal| animal == "dog" }
-
-  dog_exists != nil
+  !animals.find { |animal| animal == "dog" }.nil?
+  # animals.find { |animal| animal == "dog" } != nil
+  # animals.include? "dog"
 end
 
 puts include_dog?
@@ -144,10 +133,11 @@ puts "Exercise 8:"
 
 def round_numbers
   numbers = [5.45, 3.99, 4.67, 1.49, 3.14, 9.41]
-  rounded_numbers = numbers.map { |number| number.round }
+  numbers.map { |number| number.round }
 
-  rounded_numbers
+  # numbers.map(&:round)
 end
+
 puts round_numbers
 
 puts "\n"
@@ -158,9 +148,8 @@ puts "\n"
 puts "Exercise 9:"
 def total_negative_numbers
   numbers = [0, 3, -1, -45.4, 5, 68, -8]
-  negative_numbers = numbers.select { |number| number < 0 }
-
-  negative_numbers
+  # numbers.count { |number| number < 0 }
+  numbers.count(&:negative?)
 end
 
 puts total_negative_numbers
@@ -174,17 +163,19 @@ puts "Exercise 10:"
 def group_words_by_length
   words = ["alice", "tony", "steve", "carlos", "rick", "martin", "chris", "tom", "david", "megan", "sue"]
 
-  indexes = words.map { |word| word.size }
-  indexes = indexes & indexes
-  indexed_hash = {}
-  indexes.map do |index|
-    indexed_hash[index] = []
-  end
+  words.group_by(&:length) 
 
-  ordered_words = words.map do |word|
-    indexed_hash[word.size] << word
-  end
-  indexed_hash
+  # indexes = words.map { |word| word.size }
+  # indexes = indexes & indexes
+  # indexed_hash = {}
+  # indexes.map do |index|
+    # indexed_hash[index] = []
+  # end
+# 
+  # ordered_words = words.map do |word|
+    # indexed_hash[word.size] << word
+  # end
+  # indexed_hash
 
   #=> {5 => ["alice", "steve", "carlos", "chris", "david", "megan"], 4 => ["tony", "rick"], 3 => ["sue", "tom"]}
 end
@@ -207,13 +198,10 @@ if counter == 2
 end
 end
 
-
 def exclude_prime_numbers
   numbers = (1..100).to_a
 
-  prime_numbers_excluded = numbers.reject { |number| !is_prime_number? number }
-
-  prime_numbers_excluded
+  numbers.reject { |number| !is_prime_number? number }
   #=> [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 end
 
@@ -236,10 +224,7 @@ def keep_only_female_heroes
     {name: "Hulk", gender: "undefined"},
   ]
 
-  female_heroes = heroes.select { |heroe| heroe[:gender] == "female" }
-
-  female_heroes
-
+  heroes.select { |heroe| heroe[:gender] == "female" }
   #=> [{name: "Black Widow", gender: "female"}, {name: "Captain Marvel", gender: "female"}, {name: "The Wasp", gender: "female"}]
 end
 
@@ -253,8 +238,7 @@ puts "Exercise 13:"
 def sort_alphabetically_by_first_letter
   countries = ["Mexico", "Canada", "Brazil", "France", "England", "Australia", "United States", "Denmark", "Japan", "Italy"]
 
-  sorted_countries = countries.sort_by { |country| country }
-  sorted_countries
+  countries.sort_by { |country| country }
   #=> ["Australia", "Brazil", "Canada", "Denmark", "England", "France", "Italy", "Japan", "Mexico", "United States"]
 end
 

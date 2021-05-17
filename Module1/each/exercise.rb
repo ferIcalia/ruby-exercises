@@ -7,7 +7,7 @@
 # Highlights:
  # - #each works for hash and arrays
  # - Is it called an iterator and repeats as many elements as it contains
-  
+
 # How to run this file
 # 1. Open a terminal and `cd` to where the project is
   # cd path/to/ruby-exercises/Module1/each
@@ -54,8 +54,8 @@ characters = ["goku", "deku", "eren", "vegeta", "saitama", "mikasa", "katara"]
 new_characters = Array.new
 names_length = Array.new
 
-characters.each do |character| 
-  new_characters << character if character.size <= 4 
+characters.each do |character|
+  new_characters << character if character.size <= 4
   names_length << character.size
 end
 puts new_characters.inspect
@@ -143,7 +143,7 @@ characters.each do |character|
   response << {name: character[0], age: character[1].to_i}
 
   message_response = "#{character[0]} is a #{character[1]} years old with and is able to "
-  character[2].each do |superpower|    
+  character[2].each do |superpower|
     message_response += superpower + ", "
   end
   puts message_response
