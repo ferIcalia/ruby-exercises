@@ -8,7 +8,6 @@
   # - Any number of classes can inherit from a single superclass
   # - The class being inherited from is called the parent or superclass
   # - A class can only inherit from one parent. This is not the same to other programming languages.
-
 # How to run this file
 # 1. Open a terminal and `cd` to where the project is
   # cd path/to/ruby-exercises/Module1/inheritance

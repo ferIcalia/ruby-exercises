@@ -8,7 +8,6 @@
  # - You can mixin modules with include to have instance methods
  # - You can mixin modules with exclude to have class methods
  # - Modules can live by themselves
-
 # Exercise 1:
 # Given the following code:'
 # 1. Extract the start and stop methods into a module called Engine
