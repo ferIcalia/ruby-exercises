@@ -20,7 +20,9 @@ class Order
   end
 
   def check_out
-    @status = "complete"
+    return 'You must have products to proceed' if @total_products.zero?
+
+    @status = 'complete'
   end
 
 end

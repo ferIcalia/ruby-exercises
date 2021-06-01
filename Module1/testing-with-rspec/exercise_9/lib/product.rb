@@ -26,5 +26,4 @@ class Product
       @reliability = "weak"
     end
   end
-
 end

@@ -20,5 +20,16 @@ RSpec.describe User do
       expect(user.email).to eq "t@gmail.com"
       expect(user.image_generator).to eq mock_image_generator
     end
+
+    it "returns the number captured by the user" do
+      mock_image_generator = instance_double("Image", max_image_size: 45)
+      user = User.new("john_doe@test.com", mock_image_generator)
+
+      allow(user).to receive(:get_user_input).and_return(5234)
+
+      user_input = user.get_user_input
+
+      expect(user_input).to eql 5234
+    end
   end
 end
